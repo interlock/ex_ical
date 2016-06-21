@@ -1,7 +1,7 @@
 defmodule ExIcal.Recurrence do
   use Timex
 
-  def add_recurring_events(events, end_date \\ Date.now) do
+  def add_recurring_events(events, end_date \\ DateTime.now) do
     events ++ (events |> Enum.reduce([], fn(event, revents) ->
       case event.rrule do
         nil ->
@@ -53,10 +53,11 @@ defmodule ExIcal.Recurrence do
   defp add_recurring_events_until(event, until, shift_opts) do
     new_event = shift_event(event, shift_opts)
 
-    case Date.compare(new_event.start, until) do
+    case DateTime.compare(new_event.start, until) do
      -1 -> [new_event] ++ add_recurring_events_until(new_event, until, shift_opts)
       0 -> [new_event]
       1 -> []
+      {:error, :invalid_date} -> []
     end
   end
 
@@ -71,8 +72,8 @@ defmodule ExIcal.Recurrence do
 
   defp shift_event(event, shift_opts) do
     new_event = event
-    new_event = %{new_event | start: Date.shift(event.start, shift_opts)}
-    new_event = %{new_event | end: Date.shift(event.end, shift_opts)}
+    new_event = %{new_event | start: DateTime.shift(event.start, shift_opts)}
+    new_event = %{new_event | end: DateTime.shift(event.end, shift_opts)}
     new_event
   end
 end
