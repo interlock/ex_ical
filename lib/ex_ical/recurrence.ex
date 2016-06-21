@@ -53,7 +53,7 @@ defmodule ExIcal.Recurrence do
   defp add_recurring_events_until(event, until, shift_opts) do
     new_event = shift_event(event, shift_opts)
 
-    case DateTime.compare(new_event.start, until) do
+    case Timex.compare(new_event.start, until) do
      -1 -> [new_event] ++ add_recurring_events_until(new_event, until, shift_opts)
       0 -> [new_event]
       1 -> []

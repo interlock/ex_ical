@@ -15,7 +15,7 @@ defmodule ExIcal.Utils do
   end
 
   def date_before?(date1, date2) do
-      case DateTime.compare(date1, date2) do
+      case Timex.compare(date1, date2) do
        -1 -> true
         0 -> true
         1 -> false
@@ -25,7 +25,7 @@ defmodule ExIcal.Utils do
   end
 
   def date_after?(date1, date2) do
-      case DateTime.compare(date1, date2) do
+      case Timex.compare(date1, date2) do
        -1 -> false
         0 -> true
         1 -> true
