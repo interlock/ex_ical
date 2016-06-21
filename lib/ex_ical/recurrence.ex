@@ -57,7 +57,7 @@ defmodule ExIcal.Recurrence do
      -1 -> [new_event] ++ add_recurring_events_until(new_event, until, shift_opts)
       0 -> [new_event]
       1 -> []
-      {:error, :invalid_date} -> []
+      {:error, _} -> []
     end
   end
 

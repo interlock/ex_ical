@@ -19,7 +19,7 @@ defmodule ExIcal.Utils do
        -1 -> true
         0 -> true
         1 -> false
-        {:error, :invalid_date} ->
+        {:error, _} ->
           false
       end
   end
@@ -29,7 +29,7 @@ defmodule ExIcal.Utils do
        -1 -> false
         0 -> true
         1 -> true
-        {:error, :invalid_date} ->
+        {:error, _} ->
           false
       end
   end
