@@ -4,6 +4,8 @@ Not ready yet!
 
 ICalendar parser for [Elixir](http://elixir-lang.org).
 
+####### I AM A CAT ! ######
+
 ## Installation
 
 Add ex_ical to your list of dependencies in `mix.exs`:
